@@ -20,7 +20,8 @@
   }
   * { box-sizing: border-box; }
   html, body { margin:0; padding:0; background: var(--bg); color: var(--ink); font-family: 'Space Mono', ui-monospace, monospace; }
-  html, body { overflow-x: hidden; width: 100%; }
+  html { overflow-x: clip; }
+  body { overflow-x: clip; width: 100%; position: relative; }
   img { display:block; max-width:100%; }
   a { color: inherit; }
 
@@ -30,7 +31,7 @@
     background-size: 3px 3px; mix-blend-mode: multiply; opacity:.18;
   }
 
-  .page { max-width: 1180px; margin: 0 auto; padding: 28px 36px 0; position: relative; }
+  .page { max-width: 1180px; margin: 0 auto; padding: 28px 36px 0; position: relative; overflow-x: clip; }
 
   /* ---------- TOPBAR / NAV ---------- */
   .topbar {
@@ -496,11 +497,25 @@
 
   /* Responsive */
   @media (max-width: 820px) {
-    .page { padding: 18px 20px 0; }
-    .topbar { flex-wrap: wrap; row-gap: 14px; column-gap: 12px; padding: 4px 0 14px; margin-bottom: 18px; }
-    .logoblock .logo-img { height: 60px; }
-    .nav { width: 100%; flex-wrap: wrap; gap: 14px 18px; justify-content: flex-start; }
-    .nav a.menu-cta { padding: 7px 12px; }
+    .page { padding: 18px 18px 0; }
+    .topbar {
+      flex-direction: column; align-items: stretch;
+      row-gap: 12px; padding: 4px 0 14px; margin-bottom: 18px;
+    }
+    .logoblock { justify-content: center; }
+    .logoblock .logo-img { height: 56px; }
+    .nav {
+      width: 100%; flex-wrap: wrap;
+      gap: 10px 14px; justify-content: center;
+    }
+    .nav a { padding: 4px 2px; }
+    .nav a.menu-cta {
+      flex-basis: 100%;
+      text-align: center;
+      padding: 10px 14px;
+      margin-top: 4px;
+      transform: none;
+    }
     .hero { grid-template-columns: 1fr; padding: 28px 22px 32px; gap: 28px; }
     .hero-photo-wrap { min-height: 260px; }
     .hero-logo { width: 100%; max-width: 360px; margin: -4px auto 8px; }
